@@ -1,0 +1,17 @@
+Id:123
+Número de série:456
+Número do Patrimônio:789
+Tipo de Patrimônio:10 11 12
+Descrição:13 14 15
+Localização:16 17 18
+Data de fabricação:19 20 21
+Data de aquisição:22 23 24
+Id:a
+Número de série:d
+Número do Patrimônio:f
+Tipo de Patrimônio:g
+Descrição:b
+Localização:n
+Data de fabricação:m
+Data de aquisição:,
+-------------------------------------------------------------------------------------------------------
