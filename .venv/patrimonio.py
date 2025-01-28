@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox
 import sys
 
 class Patrimonio(QWidget):
@@ -101,9 +101,20 @@ class Patrimonio(QWidget):
         self.setLayout(self.layout_v)
 
     def cadastrar(self):
+    if
+        (self.edit_id.text()=="" or 
+        self.edit_serie.text()=="" or 
+        self.edit_npatrimonio.text()=="" or 
+        self.edit_tpatrimonio.text()=="" or 
+        self.edit_desc.text()=="" or 
+        self.edit_local.text()=="" or 
+        self.edit_datafab()=="" or 
+        self.edit_dataaq.text()==""):
+        QMessageBox.critical(self,"Erro","Você deve preencher todos os campos")
+
+    else:
         # Criando variável que fará referêcia ao arquivo de texto
         arquivo = open("clientes.txt", "+a")
-
         arquivo.write(f"Id:{self.edit_id.text()}\n")
         arquivo.write(f"Número de série:{self.edit_serie.text()}\n")
         arquivo.write(f"Número do Patrimônio:{self.edit_npatrimonio.text()}\n")
@@ -113,9 +124,8 @@ class Patrimonio(QWidget):
         arquivo.write(f"Data de fabricação:{self.edit_datafab.text()}\n")
         arquivo.write(f"Data de aquisição:{self.edit_dataaq.text()}\n")
         arquivo.write("-------------------------------------------------------------------------------------------------------")
-        
-
         arquivo.close()
+        QMessageBox.information(self,"Salvo","Dados Salvos")
 
 # Iniciar a aplicação
 # app = QApplication(sys.argv)

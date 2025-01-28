@@ -14,4 +14,12 @@ Descrição:b
 Localização:n
 Data de fabricação:m
 Data de aquisição:,
+-------------------------------------------------------------------------------------------------------Id:a
+Número de série:d
+Número do Patrimônio:f
+Tipo de Patrimônio:c
+Descrição:v
+Localização:b
+Data de fabricação:n
+Data de aquisição:h
 -------------------------------------------------------------------------------------------------------
