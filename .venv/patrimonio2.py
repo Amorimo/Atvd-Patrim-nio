@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
 import sys
 
-class cadastropatrimonioloc(QWidget):
+class patrimonioloc(QWidget):
     def __init__(self):
         super().__init__()
 
@@ -111,7 +111,7 @@ class cadastropatrimonioloc(QWidget):
         arquivo.close()
 
 # Iniciar a aplicação
-app = QApplication(sys.argv)
-tela = cadastropatrimonioloc()
-tela.show()
-app.exec()
+# app = QApplication(sys.argv)
+# tela = cadastropatrimonioloc()
+# tela.show()
+# app.exec()
