@@ -95,11 +95,11 @@ class patrimonioloc(QWidget):
 
     def cadastrar(self):
         # Criando variável que fará referêcia ao arquivo de texto
-        arquivo = open("localização.txt", "+a")
+        arquivo = open("localização.csv", "+a")
 
-        arquivo.write(f"Id:{self.edit_id.text()}\n")
-        arquivo.write(f"Empresa:{self.edit_empresa.text()}\n")
-        arquivo.write(f"Logradouro:{self.edit_logra.text()}\n")
+        arquivo.write(f"{self.edit_id.text()};")
+        arquivo.write(f"{self.edit_empresa.text()};")
+        arquivo.write(f"{self.edit_logra.text()};")
         arquivo.write(f"Número:{self.edit_num.text()}\n")
         arquivo.write(f"Prédio:{self.edit_predio.text()}\n")
         arquivo.write(f"Andar:{self.edit_andar.text()}\n")

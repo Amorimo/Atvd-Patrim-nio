@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox
 import sys
+import csv
 
-class Patrimonio(QWidget):
+class LocalizarPatrimonio(QWidget):
     def __init__(self):
         super().__init__()
 
@@ -64,15 +65,13 @@ class Patrimonio(QWidget):
         self.edit_dataaq = QLineEdit()
         self.edit_dataaq.setStyleSheet("QLineEdit{font-size:12px}")
 
-        self.button = QPushButton("Cadastrar")
-        self.button.setStyleSheet("QPushButton{background-color:red; color:white; font-size:12pt; font-weight:bold;}")
-
-        # CHAMAR A FUNÇÃO CADASTRO DO CLIENTE AO CLICAR NO BOTÃO
-        self.button.clicked.connect(self.cadastrar)
-
+        
         # ADICIONAR O LABEL NOME E O LINEEDIT AO LAYOUT VERTICAL
         self.layout_v.addWidget(self.label_id)
         self.layout_v.addWidget(self.edit_id)
+        self.btnbuscar=QPushButton("Buscar Patrimônio")
+        self.layout_v.addWidget(self.btnbuscar)
+        self.btnbuscar.clicked.connect(self.localizar)
 
         self.layout_v.addWidget(self.label_serie)
         self.layout_v.addWidget(self.edit_serie)
@@ -95,33 +94,33 @@ class Patrimonio(QWidget):
         self.layout_v.addWidget(self.label_dataaq)
         self.layout_v.addWidget(self.edit_dataaq)
 
-        self.layout_v.addWidget(self.button)
+        
 
         # ADICIONAR O LAYOUT V NA TELA
         self.setLayout(self.layout_v)
+    
+    def localizar(self):
+        # Abrir o arquivo csv e atribuir á uma variável
+        arquivo=open("clientes.csv","r",encoding="utf8")
+        linhas=csv.reader(arquivo)
 
-    def cadastrar(self):
-        if (self.edit_id.text() == "" or self.edit_serie.text() == "" or self.edit_npatrimonio.text() == "" 
-            or self.edit_tpatrimonio.text() == "" or self.edit_desc.text() == "" or self.edit_local.text() == "" 
-            or self.edit_datafab.text() == "" or self.edit_dataaq.text() == ""):
-            QMessageBox.critical(self, "Erro", "Você deve preencher todos os campos")
-        else:
-            # Criando variável que fará referência ao arquivo de texto
-            arquivo = open("clientes.csv", "+a")
-            arquivo.write(f"{self.edit_id.text()};")
-            arquivo.write(f"{self.edit_serie.text()};")
-            arquivo.write(f"{self.edit_npatrimonio.text()};")
-            arquivo.write(f"{self.edit_tpatrimonio.text()};")
-            arquivo.write(f"{self.edit_desc.text()};")
-            arquivo.write(f"{self.edit_local.text()};")
-            arquivo.write(f"{self.edit_datafab.text()};")
-            arquivo.write(f"{self.edit_dataaq.text()}\n")
-            arquivo.close()
-            QMessageBox.information(self, "Salvo", "Dados Salvos")
+
+        for i in linhas:
+            lin=str(i).replace("['","").replace("']","").split(";")
+            if(lin[0]==self.edit_id.text()):
+                self.edit_serie.setText(lin[1])
+                self.edit_npatrimonio.setText(lin[2])
+                self.edit_tpatrimonio.setText(lin[3])
+                self.edit_desc.setText(lin[4])
+                self.edit_local.setText(lin[5])
+                self.edit_datafab.setText(lin[6])
+                self.edit_dataaq.setText(lin[7])
+    
+    
 
 
 # Iniciar a aplicação
 # app = QApplication(sys.argv)
-# tela = cadastropatrimonio()
+# tela = LocalizarPatrimonio()
 # tela.show()
 # app.exec()
